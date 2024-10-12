@@ -36,8 +36,8 @@ const Mail = () => {
              <MdKeyboardArrowRight className="text-2xl  hover:bg-gray-200 cursor-pointer rounded-full"/>
          </div>
       </div>
-       <div className="">
-
+       <div className="flex h-[90vh]">
+            <h1>this is emial detail page</h1>
        </div>
     </div>
   )
