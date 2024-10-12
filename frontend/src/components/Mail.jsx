@@ -38,6 +38,7 @@ const Mail = () => {
       </div>
        <div className="flex h-[90vh]">
             <h1>this is emial detail page</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, quas fuga aperiam, exercitationem non voluptatibus, iste accusantium perspiciatis nobis excepturi doloribus libero. Architecto esse corporis temporibus doloribus. Ducimus, incidunt consequatur!</p>
        </div>
     </div>
   )
