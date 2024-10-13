@@ -36,9 +36,23 @@ const Mail = () => {
              <MdKeyboardArrowRight className="text-2xl  hover:bg-gray-200 cursor-pointer rounded-full"/>
          </div>
       </div>
-       <div className="flex h-[90vh]">
-            <h1>this is emial detail page</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, quas fuga aperiam, exercitationem non voluptatibus, iste accusantium perspiciatis nobis excepturi doloribus libero. Architecto esse corporis temporibus doloribus. Ducimus, incidunt consequatur!</p>
+       <div className="overflow-y-auto p-4">
+             <div className="flex justify-between bg-white items-center gap-1">
+              <div className="flex items-center gap-2">
+                 <h1 className="text-xl  font-medium">Subject</h1>
+                 <span className="text-sm bg-gray-200 rounded-md px-2">Inbox</span>
+              </div>
+               <div className="flex-none text-gray-400 my-5 text-sm">
+                  <p>12 days ago</p>
+               </div>
+             </div>
+             <div className="text-gray-500 text-sm">
+              <h1>Raushan@gmail.com</h1>
+              <span>to me</span>
+             </div>
+             <div className="py-10">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat suscipit voluptatibus reiciendis exercitationem? Laudantium labore, nam, voluptas </p>
+             </div>
        </div>
     </div>
   )

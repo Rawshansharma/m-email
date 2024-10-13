@@ -8,7 +8,7 @@ import { CgMenuGridR } from "react-icons/cg";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center justify-items-start mx-3 h-16 z-10">
+    <div className="flex items-center justify-items-start mx-3 h-16 z-10 top-0 sticky bg-white">
         <di className="flex items-center gap-10">
             <div className="flex items-center gap-2">
                 <div className='p-2 cursor-pointer hover:bg-gray-200 rounded-full'>
