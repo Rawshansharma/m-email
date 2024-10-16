@@ -1,9 +1,23 @@
 import { MdArrowBack, MdDeleteOutline, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineAddTask, MdOutlineMarkEmailUnread, MdOutlineMore, MdOutlineReport } from "react-icons/md"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { BiArchiveIn } from "react-icons/bi"
+import { useSelector } from "react-redux";
+import axios from "axios";
+import toast from "react-hot-toast";
  
 const Mail = () => {
   const navigate = useNavigate();
+   const {emailDetails} = useSelector(store => store.app);
+   const {id} = useParams()
+   const handleDelete = async() =>{
+         try{
+          axios.delete(`http://localhost:5000/email/delete/${id}` , {withCredentials:true});
+          toast.success('Email deleted');
+          navigate('/');
+         }catch(err){
+          console.log(err);
+         }
+   }
   return (
     <div className="flex-1 bg-white rounded-xl mx-5">
       <div className="flex items-center justify-between px-4">
@@ -17,7 +31,7 @@ const Mail = () => {
           <div  className="text-gray-400 p-3  hover:bg-gray-200 rounded-full cursor-pointer ">
             <MdOutlineReport />
           </div>
-          <div  className="text-gray-400 p-3  hover:bg-gray-200 rounded-full cursor-pointer ">
+          <div onClick={handleDelete} className="text-gray-400 p-3  hover:bg-gray-200 rounded-full cursor-pointer ">
             <MdDeleteOutline />
           </div>
           <div  className="text-gray-400 p-3  hover:bg-gray-200 rounded-full cursor-pointer ">
@@ -39,19 +53,25 @@ const Mail = () => {
        <div className="overflow-y-auto p-4">
              <div className="flex justify-between bg-white items-center gap-1">
               <div className="flex items-center gap-2">
-                 <h1 className="text-xl  font-medium">Subject</h1>
+                 <h1 className="text-xl  font-medium">{emailDetails?.subject}</h1>
                  <span className="text-sm bg-gray-200 rounded-md px-2">Inbox</span>
               </div>
                <div className="flex-none text-gray-400 my-5 text-sm">
-                  <p>12 days ago</p>
+               <p>{new Date(emailDetails.updatedAt).toLocaleString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                     })}</p>
                </div>
              </div>
              <div className="text-gray-500 text-sm">
-              <h1>Raushan@gmail.com</h1>
+              <h1>{emailDetails?.to}</h1>
               <span>to me</span>
              </div>
              <div className="py-10">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat suscipit voluptatibus reiciendis exercitationem? Laudantium labore, nam, voluptas </p>
+              <p> {emailDetails.message} </p>
              </div>
        </div>
     </div>

@@ -1,8 +1,13 @@
+import axios from "axios";
 import { useState } from "react";
-import { Link  } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { Link,useNavigate  } from "react-router-dom";
+import { setUserAuth } from "../redux/AppSlice";
 
  
 const Login = () => {
+    const dispatch = useDispatch()
     const [logData , setLogData] = useState({
         email:'',
         password:''
@@ -15,10 +20,29 @@ const Login = () => {
             [name]:value
          }))
     }
-
-    const handleSubmit = (e) => {
+    
+    const navigate = useNavigate()
+    const handleSubmit =  async(e) => {
         e.preventDefault()
-        console.log(logData)
+         try{
+          const res = await axios.post("http://localhost:5000/api/users/login",logData , {
+            headers:{
+             "Content-Type":"application/json"
+            },
+            withCredentials:true
+            }
+         );
+         if(res.data.success){
+           navigate("/")
+           dispatch(setUserAuth(res.data.user))
+           toast.success(`${res.data.user.fullName}Login Successfully`)
+         }
+         }catch(err){
+          console.log(err)
+          toast.error("Something went wrong")
+         }
+
+         
     }
   return (
     <div className="flex items-center justify-center min-h-[90vh] bg-gray-100">

@@ -1,11 +1,14 @@
 import { useState } from 'react';
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+  
 const Signup = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
     password: '',
-    confirmPassword: '',
+   
   });
 
   const handleChange = (e) => {
@@ -15,11 +18,22 @@ const Signup = () => {
       [name]: value,
     }));
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic
-    console.log('Form submitted:', formData);
+  const navigate = useNavigate();
+   const handleSubmit = async(e) => {
+    e.preventDefault(); 
+    try{
+      const res = await axios.post("http://localhost:5000/api/users/register",formData , {
+        headers:{
+          "Content-Type":"application/json"
+        },
+        withCredentials:true
+      });
+      if(res.data.success) navigate('/login');
+      toast.success("Account Created Successfully")
+     }catch(err){
+      console.log(err);
+      toast.error("Something went wrong")
+    }
   };
 
   return (
@@ -32,8 +46,8 @@ const Signup = () => {
             <label className="block text-gray-600">Name</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="fullName"
+              value={formData.fullName}
               onChange={handleChange}
               className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your name"
@@ -69,19 +83,6 @@ const Signup = () => {
             />
           </div>
 
-          {/* Confirm Password Field */}
-          <div>
-            <label className="block text-gray-600">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Confirm your password"
-              required
-            />
-          </div>
 
           {/* Submit Button */}
           <button
