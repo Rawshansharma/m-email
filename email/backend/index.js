@@ -3,7 +3,6 @@ const mongoose = require('mongoose');  // No need for destructuring here
 require('dotenv').config();
 const cookieParser = require('cookie-parser');  // Fix the typo
 const cors = require('cors');
-const path = require('path');
 
 const app = express();
 
@@ -26,26 +25,26 @@ app.use('/api/users', require('./routes/userRoute'));
 app.use('/email/' , require('./routes/emailRoute'));  
 
 
-//------------------------deployment code --------------//
+// //------------------------deployment code --------------//
 
-const frontendPath = path.resolve(__dirname, '../frontend/dist');
+// const frontendPath = path.resolve(__dirname, '../frontend/dist');
 
-if (process.env.NODE_ENV === 'production') {
-    // Serve static files from the correct frontend dist folder
-    app.use(express.static(frontendPath));
+// if (process.env.NODE_ENV === 'production') {
+//     // Serve static files from the correct frontend dist folder
+//     app.use(express.static(frontendPath));
 
-    // Handle all routes by sending the index.html from the frontend build
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(frontendPath, 'index.html'));
-    });
-} else {
-    // For development mode, just send a response for the API
-    app.get('/', (req, res) => {
-        res.send('API is running....');
-    });
-}
+//     // Handle all routes by sending the index.html from the frontend build
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.resolve(frontendPath, 'index.html'));
+//     });
+// } else {
+//     // For development mode, just send a response for the API
+//     app.get('/', (req, res) => {
+//         res.send('API is running....');
+//     });
+// }
 
-//--------------------end------------------//
+// //--------------------end------------------//
 
 
 // Start server

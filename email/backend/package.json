@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "build:frontend": "cd ../frontend && npm install && npm run build",
-    "build:backend": "npm install",
-    "build": "npm run build:backend && npm run build:frontend"
+    "start": "nodemon index.js"
+    
    },
   "author": "",
   "license": "ISC",
