@@ -40,6 +40,7 @@ const emailCtrl = {
            const emails = await Email.find({userId}).sort({createdAt: -1})
            return  res.status(200).json({
                 emails
+            
            })
         }catch(err){
             console.log(err);

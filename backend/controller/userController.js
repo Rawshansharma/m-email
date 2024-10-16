@@ -74,15 +74,24 @@ login : async(req , res) => {
   }
 },
 
-  logout : async(req,res) => {
-    try{
-      return res.status(200).cookie('token','',{maxAge:0}).json({
-        msg:'Logout successfully'
-      })
-    }catch(err){
-      console.log(err);
-    }
+logout: async (req, res) => {
+  try {
+    return res
+      .status(200)
+      .clearCookie('token', { 
+        httpOnly: true, // Ensure it matches how the cookie was set
+        secure: process.env.NODE_ENV === 'production', // Ensure 'secure' flag for production
+        sameSite: 'strict', // Ensure sameSite if you used it initially
+       })
+      .json({
+        msg: 'Logout successfully'
+      });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ msg: 'Something went wrong' });
   }
+}
+
 
 }
 
