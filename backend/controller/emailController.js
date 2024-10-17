@@ -34,18 +34,30 @@ const emailCtrl = {
 
         }
     },
-    getAllEmailById: async(req,res) => {
-        try{
-           const userId = req.id;
-           const emails = await Email.find({userId}).sort({createdAt: -1})
-           return  res.status(200).json({
-                emails
-            
-           })
-        }catch(err){
-            console.log(err);
+    getAllEmailById: async (req, res) => {
+        try {
+          // Ensure `userId` is properly retrieved from the request (e.g., req.user.id from a middleware)
+          const userId = req.id; // or use `req.user.id` if set by middleware
+          if (!userId) {
+            return res.status(400).json({ message: 'User ID is missing.' });
+          }
+      
+          // Fetch emails for the specific user, sorted by creation date (newest first)
+          const emails = await Email.find({ userId }).sort({ createdAt: -1 });
+      
+          // Return the emails in the response
+          return res.status(200).json({ emails });
+        } catch (err) {
+          // Log the error for debugging
+          console.error(err)
+      
+          // Send an error response to the client
+          return res.status(500).json({
+            message: 'An error occurred while retrieving emails.',
+            error: err.message // Optionally, you can include this in development
+          })
         }
-    }
+      }
 }
 
 module.exports = emailCtrl;
