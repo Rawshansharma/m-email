@@ -10,7 +10,7 @@ const useGetAllUsers = () => {
         const fetchEmails = async() => {
           const apiUrl = import.meta.env.VITE_API_URL;
             try{
-              const res = await axios.get(`${apiUrl}/email/getallemails` , {
+              const res = await axios.get(`${apiUrl}/api/email/getallemails` , {
                 withCredentials: true,
               });
                dispatch(setEmails(res.data.emails))

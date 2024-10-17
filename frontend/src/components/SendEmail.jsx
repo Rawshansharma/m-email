@@ -25,7 +25,7 @@ const SendEmail = () => {
         console.log(data)
        try{
         const apiUrl = import.meta.env.VITE_API_URL;
-            const res = await axios.post(`${apiUrl}/email/create` , data , {
+            const res = await axios.post(`${apiUrl}/api/email/create` , data , {
             headers: {
               "Content-Type": "application/json",
             },
