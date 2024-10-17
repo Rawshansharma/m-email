@@ -17,7 +17,8 @@ const Navbar = () => {
 
    const handleLogout = async() => {
        try{
-          const res  = await axios.post('http://localhost:5000/api/users/logout');
+        const apiUrl = import.meta.env.VITE_API_URL;
+           const res  = await axios.post(`${apiUrl}/api/users/logout`);
           console.log(res);
           localStorage.removeItem('token');
           toast.success('Logout Success');

@@ -24,7 +24,8 @@ const SendEmail = () => {
         e.preventDefault();
         console.log(data)
        try{
-           const res = await axios.post("http://localhost:5000/email/create" , data , {
+        const apiUrl = import.meta.env.VITE_API_URL;
+            const res = await axios.post(`${apiUrl}/email/create` , data , {
             headers: {
               "Content-Type": "application/json",
             },

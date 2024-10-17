@@ -11,7 +11,9 @@ const Mail = () => {
    const {id} = useParams()
    const handleDelete = async() =>{
          try{
-          axios.delete(`http://localhost:5000/email/delete/${id}` , {withCredentials:true});
+          const apiUrl = import.meta.env.VITE_API_URL;
+        
+          axios.delete(`${apiUrl}/email/delete/${id}` , {withCredentials:true});
           toast.success('Email deleted');
           navigate('/');
          }catch(err){

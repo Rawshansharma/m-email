@@ -8,8 +8,9 @@ const useGetAllUsers = () => {
     const dispatch = useDispatch()
      useEffect(() => {
         const fetchEmails = async() => {
+          const apiUrl = import.meta.env.VITE_API_URL;
             try{
-              const res = await axios.get("http://localhost:5000/email/getallemails" , {
+              const res = await axios.get(`${apiUrl}/email/getallemails` , {
                 withCredentials: true,
               });
                dispatch(setEmails(res.data.emails))
@@ -18,7 +19,7 @@ const useGetAllUsers = () => {
             }
         }
         fetchEmails()
-     },[])
+     },[dispatch])
 
 }
 

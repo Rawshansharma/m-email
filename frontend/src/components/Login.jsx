@@ -25,7 +25,9 @@ const Login = () => {
     const handleSubmit =  async(e) => {
         e.preventDefault()
          try{
-          const res = await axios.post("http://localhost:5000/api/users/login",logData , {
+          const apiUrl = import.meta.env.VITE_API_URL;
+          console.log(apiUrl);
+          const res = await axios.post(`${apiUrl}/api/users/login`,logData , {
             headers:{
              "Content-Type":"application/json"
             },
