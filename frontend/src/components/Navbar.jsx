@@ -5,7 +5,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { CgMenuGridR } from "react-icons/cg";
 import {useDispatch, useSelector} from "react-redux"
 import { useEffect, useState } from 'react';
-import { setSarchText, setUserAuth } from '../redux/AppSlice';
+import { setEmails, setEmailsDetails, setSarchText, setUserAuth } from '../redux/AppSlice';
 import axios from "axios"
 import toast from "react-hot-toast";
 
@@ -22,6 +22,8 @@ const Navbar = () => {
           localStorage.removeItem('token');
           toast.success('Logout Success');
           dispatch(setUserAuth(null));
+          dispatch(setEmails([]));
+          dispatch(setEmailsDetails([]));
        }catch(err){
         console.log(err);
        }
