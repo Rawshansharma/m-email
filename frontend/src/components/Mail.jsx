@@ -13,7 +13,7 @@ const Mail = () => {
          try{
           const apiUrl = import.meta.env.VITE_API_URL;
         
-          axios.delete(`${apiUrl}/api/email/delete/${id}` , {withCredentials:true});
+          axios.delete(`${apiUrl}/api/delete/${id}` , {withCredentials:true});
           toast.success('Email deleted');
           navigate('/');
          }catch(err){

@@ -27,7 +27,7 @@ const Login = () => {
          try{
           const apiUrl = import.meta.env.VITE_API_URL;
           console.log(apiUrl);
-          const res = await axios.post(`${apiUrl}/api/users/login`,logData , {
+          const res = await axios.post(`${apiUrl}/api/login`,logData , {
             headers:{
              "Content-Type":"application/json"
             },
