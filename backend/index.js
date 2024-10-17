@@ -22,7 +22,7 @@ app.use(cors(corsOptions));
 // Routes
 // Ensure that the correct routes are being used instead of the controller itself
 app.use('/api/users', require('./routes/userRoute'));  
-app.use('/email/' , require('./routes/emailRoute'));  
+app.use('/api/email/' , require('./routes/emailRoute'));  
 
 // Start server
 const port = process.env.PORT || 5000;
