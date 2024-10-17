@@ -61,6 +61,8 @@ login : async(req , res) => {
     return res.status(200).cookie('token', token, {
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
       httpOnly: true,
+      secure: true, // Ensure this is set to true in production (for HTTPS)
+      sameSite: 'None',
     }).json({
       success: true,
       message: "Login successful",
