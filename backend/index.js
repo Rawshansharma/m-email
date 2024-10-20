@@ -11,13 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());  // Use the corrected `cookieParser`
 
-// CORS options
-const corsOptions = {
-    origin: ['https://m-email-fe.onrender.com/'],
-    credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'https://m-email.onrender.com',  // frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // allowed HTTP methods
+    credentials: true // if cookies or sessions are involved
+  }));
 
 // Routes
 // Ensure that the correct routes are being used instead of the controller itself
