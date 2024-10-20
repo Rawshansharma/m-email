@@ -13,7 +13,7 @@ app.use(cookieParser());  // Use the corrected `cookieParser`
 
 // CORS options
 const corsOptions = {
-    origin: ['http://localhost:3000'],
+    origin: ['https://m-email-fe.onrender.com/'],
     credentials: true,
 };
 
